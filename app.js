@@ -18,7 +18,7 @@ let completedTasksHolder=document.getElementById("completed-tasks");//completed-
 let createNewTaskElement=function(taskString){
 
     let listItem=document.createElement("li");
-
+    listItem.classList.add("task-section__list-item")
     //input (checkbox)
     let checkBox=document.createElement("input");//checkbx
     //label
@@ -33,18 +33,22 @@ let createNewTaskElement=function(taskString){
     let deleteButtonImg=document.createElement("img");//delete button image
 
     label.innerText=taskString;
-    label.className='task';
+    label.className='task-section__label';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.classList.add("task-section__input");
+    checkBox.classList.add("input_checkbox");
     editInput.type="text";
-    editInput.className="add-task__input";
+    editInput.className="task-section__input";
+   editInput.classList.add("input_text");
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="button_edit";
+    editButton.className="task-section__btn button_edit";
 
-    deleteButton.className="button_delete";
+    deleteButton.className="task-section__btn button_delete";
     deleteButtonImg.src='./remove.svg';
+    deleteButtonImg.classList.add("task-section__btn-img")
     deleteButton.appendChild(deleteButtonImg);
 
 
@@ -86,16 +90,20 @@ let editTask=function(){
     label.classList.add("label_edit");
     let editBtn=listItem.querySelector(".button_edit");
     let containsClass=listItem.classList.contains("editMode");
+    console.log(editInput, "ds")
+
     //If class of the parent is .editmode
     console.log(listItem)
     if(containsClass){
 
         //switch to .editmode
         //label becomes the inputs value.
+        
         label.innerText=editInput.value;
         label.classList.toggle("label_edit");
         editBtn.innerText="Edit";
     }else{
+        editInput.classList.toggle("input_edit");
         editInput.value=label.innerText;
         editBtn.innerText="Save";
     }
@@ -120,12 +128,12 @@ let deleteTask=function(){
 //Mark task completed
 let taskCompleted=function(){
     console.log("Complete Task...");
-
     //Append the task list item to the #completed-tasks
     let listItem=this.parentNode;
-    let labelComplete = listItem.querySelector("label.task");
-    labelComplete.classList.toggle("task-section__label_complete")
-    labelComplete.classList.toggle("task-section__label")
+    let labelComplete = listItem.querySelector(".task-section__label");
+    console.log(labelComplete)
+    labelComplete.classList.add("task-section__label_complete")
+    labelComplete.classList.remove("task-section__label")
     console.log(listItem)
     completedTasksHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskIncomplete);
@@ -139,9 +147,9 @@ let taskIncomplete=function(){
     //When the checkbox is unchecked
     //Append the task list item to the #incompleteTasks.
     let listItem=this.parentNode;
-    let labelComplete = listItem.querySelector("label.task");
-    labelComplete.classList.toggle("task-section__label_complete")
-    labelComplete.classList.toggle("task-section__label")
+    let labelComplete = listItem.querySelector(".task-section__label_complete");
+    labelComplete.classList.add("task-section__label")
+    labelComplete.classList.remove("task-section__label_complete")
     console.log(listItem)
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem,taskCompleted);
