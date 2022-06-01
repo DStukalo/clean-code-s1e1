@@ -136,6 +136,8 @@ li {
   box-sizing: border-box;
   font-size: 18px;
   width: 226px;
+  margin-left: -30px;
+  margin-right: 70px;
 }
 
 .input_text {
@@ -157,6 +159,8 @@ li {
 .task-section__label_complete {
   text-decoration: line-through;
   color: #888;
+  margin-left: -30px;
+  margin-right: 170px;
 }
 
 /* Edit Task */
@@ -168,6 +172,9 @@ li {
 .input_edit {
   display: inline-block;
   width: 224px;
+  text-align: left;
+  margin-left: -30px;
+  margin-right: 30px;
 }
 
 .label_edit {
