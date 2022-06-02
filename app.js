@@ -10,7 +10,7 @@
 
 let taskInput=document.getElementById("new-task");//Add a new task.
 let addButton=document.getElementsByTagName("button")[0];//first button
-let incompleteTaskHolder=document.getElementById("incompleteTasks");//ul of #incompleteTasks
+let incompleteTaskHolder=document.getElementById("incomplete-tasks");//ul of #incompleteTasks
 let completedTasksHolder=document.getElementById("completed-tasks");//completed-tasks
 
 
@@ -89,7 +89,7 @@ let editTask=function(){
     let label=listItem.querySelector("label");
     label.classList.add("label_edit");
     let editBtn=listItem.querySelector(".button_edit");
-    let containsClass=listItem.classList.contains("editMode");
+    let containsClass=listItem.classList.contains("edit-mode");
     //If class of the parent is .editmode
     console.log(listItem)
     if(containsClass){
@@ -108,7 +108,7 @@ let editTask=function(){
     }
 
     //toggle .editmode on the parent.
-    listItem.classList.toggle("editMode");
+    listItem.classList.toggle("edit-mode");
 };
 
 
